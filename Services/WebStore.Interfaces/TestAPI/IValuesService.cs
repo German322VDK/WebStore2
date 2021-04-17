@@ -17,6 +17,6 @@ namespace WebStore.Interfaces.TestAPI
 
         HttpStatusCode Edit(int id, string value);
 
-        HttpStatusCode Remove(int id);
+        bool Remove(int id);
     }
 }
