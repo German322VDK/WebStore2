@@ -2,11 +2,11 @@
 using WebStore.Domain.Entities;
 using WebStore.Domain.Models;
 
-namespace WebStore.Data
+namespace WebStore.Services.Data
 {
     public static class TestData
     {
-        public static  List<Employee> Employees { get; } = new()
+        public static List<Employee> Employees { get; } = new()
         {
             new Employee
             {

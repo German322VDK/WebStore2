@@ -2,17 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebStore.Data;
+using WebStore.Services.Data;
 using WebStore.Domain;
 using WebStore.Domain.Entities;
 using WebStore.Interfaces.Services;
 using WebStrore.DAL.Context;
 
-namespace WebStore.Infrastructure.Services.InSQL
+namespace WebStore.Services.Services.InSQL
 {
     public class SqlProductData : IProductData
     {
-       private readonly WebStoreDB _db;
+        private readonly WebStoreDB _db;
 
         public SqlProductData(WebStoreDB db) => _db = db;
 

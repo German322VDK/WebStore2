@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using WebStore.Domain.Entities.Identity;
 using WebStrore.DAL.Context;
 
-namespace WebStore.Data
+namespace WebStore.Services.Data
 {
     public class WebStoreDbInitializer
     {
