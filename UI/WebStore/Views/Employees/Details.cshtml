@@ -1,0 +1,42 @@
+﻿@using WebStore.Domain.Entities.Identity;
+@model WebStore.Models.Employee
+
+@{ Layout = "_LayoutEmployees";
+    ViewData["Title"] = $"Сотрудник id:{Model.Id}"; }
+
+<h2>Страница сотрудника</h2>
+
+<dl class="dl-horizontal">
+    <dt>id</dt>
+    <dd>@Model.Id</dd>
+
+    <dt>Фамилия</dt>
+    <dd>@Model.LastName</dd>
+
+    <dt>Имя</dt>
+    <dd>@Model.FirstName</dd>
+
+    <dt>Отчество</dt>
+    <dd>@Model.Patronymic</dd>
+
+    <dt>Должность</dt>
+    <dd>@Model.Job</dd>
+
+    <dt>Возраст</dt>
+    <dd>@Model.Age год (лет)</dd>
+
+    <dt>Зарплата</dt>
+    <dd>@Model.Salary рублей</dd>
+
+    <dt>Рабочий стаж</dt>
+    <dd>@Model.WorkExperience год (лет)</dd>
+</dl>
+
+<hr />
+<a asp-action="Index" class="btn btn-default">К списку</a>
+@if (User.IsInRole(Role.Administrator))
+{
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Редактировать</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Удалить</a>
+}
+

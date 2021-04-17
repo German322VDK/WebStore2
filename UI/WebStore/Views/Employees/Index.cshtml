@@ -1,0 +1,56 @@
+﻿@using WebStore.Domain.Entities.Identity;
+@model IEnumerable<WebStore.Models.Employee>
+
+@{ Layout = "_LayoutEmployees"; }
+
+<h3>Сотрудники</h3>
+
+@if (User.IsInRole(Role.Administrator))
+{
+    <div>
+        <a asp-action="Create" class="btn btn-default add-to-cart">Создать сотрудника</a>
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Фамилия</td>
+            <td>Имя</td>
+            <td>Отчество</td>
+            <td>Должность</td>
+            <td>Ссылка</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.Id</td>
+                <td>@employee.LastName</td>
+                <td>@employee.FirstName</td>
+                <td>@employee.Patronymic</td>
+                <td>@employee.Job</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@employee.Id">
+                        <i class="fa fa-info-circle"></i>
+                    </a>|
+                    @if (User.IsInRole(Role.Administrator))
+                    {
+                        <a asp-action="Edit" asp-route-id="@employee.Id">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <form asp-action = "DeleteConfirmed" asp-route-id = "@employee.Id" class="text-danger">
+                            <button type = "submit" >
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<hr />
+<a asp-controller="Home" asp-action="Index" class="btn btn-default add-to-cart">Домой</a>

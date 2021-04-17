@@ -1,0 +1,144 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Products\Delete.cshtml" />
+    <None Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\Partial\_MainMenu.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <None Include="Views\Account\AccessDenied.cshtml" />
+    <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\Account\Register.cshtml" />
+    <None Include="Views\Cart\Index.cshtml" />
+    <None Include="Views\Cart\OrderConfirmed.cshtml" />
+    <None Include="Views\Cart\Partial\_CheckOut.cshtml" />
+    <None Include="Views\Catalog\Details.cshtml" />
+    <None Include="Views\Catalog\Index.cshtml" />
+    <None Include="Views\Catalog\Partial\_Advertisement.cshtml" />
+    <None Include="Views\Catalog\Partial\_CategoryTab.cshtml" />
+    <None Include="Views\Catalog\Partial\_RecomendedItems.cshtml" />
+    <None Include="Views\Employees\Delete.cshtml" />
+    <None Include="Views\Employees\Details.cshtml" />
+    <None Include="Views\Employees\Edit.cshtml" />
+    <None Include="Views\Employees\Index.cshtml" />
+    <None Include="Views\Employees\_LayoutEmployees.cshtml" />
+    <None Include="Views\Home\Blog.cshtml" />
+    <None Include="Views\Home\Blog_single.cshtml" />
+    <None Include="Views\Home\Cart.cshtml" />
+    <None Include="Views\Home\Checkout.cshtml" />
+    <None Include="Views\Home\Contact_us.cshtml" />
+    <None Include="Views\Home\Error.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Login.cshtml" />
+    <None Include="Views\Home\Partial\_BlogPostArea.cshtml" />
+    <None Include="Views\Home\Partial\_CartInfo.cshtml" />
+    <None Include="Views\Home\Partial\_Category_tab_product_details.cshtml" />
+    <None Include="Views\Home\Partial\_Product_details.cshtml" />
+    <None Include="Views\Home\Partial\_RepalyBox.cshtml" />
+    <None Include="Views\Home\Partial\_Response-area.cshtml" />
+    <None Include="Views\Home\Partial\_ShopperInfo.cshtml" />
+    <None Include="Views\Home\Partial\_Slider.cshtml" />
+    <None Include="Views\Home\Product_details.cshtml" />
+    <None Include="Views\Home\Shop.cshtml" />
+    <None Include="Views\Home\_LayoutError.cshtml" />
+    <None Include="Views\Shared\Components\Brands\Default.cshtml" />
+    <None Include="Views\Shared\Components\Sections\Default.cshtml" />
+    <None Include="Views\Shared\Components\UserInfo\Default.cshtml" />
+    <None Include="Views\Shared\Components\UserInfo\UserInfo.cshtml" />
+    <None Include="Views\Shared\Partial\_Category-tab.cshtml" />
+    <None Include="Views\Shared\Partial\_Features_items.cshtml" />
+    <None Include="Views\Shared\Partial\_Footer.cshtml" />
+    <None Include="Views\Shared\Partial\_Header.cshtml" />
+    <None Include="Views\Shared\Partial\_Left-sidebar.cshtml" />
+    <None Include="Views\Shared\Partial\_MainMenu.cshtml" />
+    <None Include="Views\Shared\Partial\_Recommended_items.cshtml" />
+    <None Include="Views\Shared\Partial\_Scripts.cshtml" />
+    <None Include="Views\Shared\Partial\_Styles.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\UserProfile\Index.cshtml" />
+    <None Include="Views\UserProfile\Orders.cshtml" />
+    <None Include="Views\UserProfile\Partial\_UserProfileMenu.cshtml" />
+    <None Include="Views\UserProfile\_UserProfileLayout.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\Admin\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\Admin\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\Admin\js\bootstrap.min.js" />
+    <None Include="wwwroot\Admin\js\custom.js" />
+    <None Include="wwwroot\Admin\js\jquery-1.10.2.js" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\contact.js" />
+    <None Include="wwwroot\js\gmaps.js" />
+    <None Include="wwwroot\js\html5shiv.js" />
+    <None Include="wwwroot\js\jquery.js" />
+    <None Include="wwwroot\js\jquery.prettyPhoto.js" />
+    <None Include="wwwroot\js\jquery.scrollUp.min.js" />
+    <None Include="wwwroot\js\main.js" />
+    <None Include="wwwroot\js\price-range.js" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\site.min.js" />
+    <None Include="wwwroot\js\site.min.js.gz" />
+    <None Include="wwwroot\lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\lib\bootstrap\js\affix.js" />
+    <None Include="wwwroot\lib\bootstrap\js\affix.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\alert.js" />
+    <None Include="wwwroot\lib\bootstrap\js\alert.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\button.js" />
+    <None Include="wwwroot\lib\bootstrap\js\button.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\carousel.js" />
+    <None Include="wwwroot\lib\bootstrap\js\carousel.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\collapse.js" />
+    <None Include="wwwroot\lib\bootstrap\js\collapse.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\dropdown.js" />
+    <None Include="wwwroot\lib\bootstrap\js\dropdown.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\modal.js" />
+    <None Include="wwwroot\lib\bootstrap\js\modal.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\popover.js" />
+    <None Include="wwwroot\lib\bootstrap\js\popover.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\scrollspy.js" />
+    <None Include="wwwroot\lib\bootstrap\js\scrollspy.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\tab.js" />
+    <None Include="wwwroot\lib\bootstrap\js\tab.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\tooltip.js" />
+    <None Include="wwwroot\lib\bootstrap\js\tooltip.min.js" />
+    <None Include="wwwroot\lib\bootstrap\js\transition.js" />
+    <None Include="wwwroot\lib\bootstrap\js\transition.min.js" />
+    <None Include="wwwroot\lib\font-awesome\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\lib\jquery\jquery.js" />
+    <None Include="wwwroot\lib\jquery\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\jquery.min.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.113" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\WebStore.Domain\WebStore.Domain.csproj" />
+    <ProjectReference Include="..\..\Services\WebStore.DAL\WebStore.DAL.csproj" />
+  </ItemGroup>
+
+</Project>

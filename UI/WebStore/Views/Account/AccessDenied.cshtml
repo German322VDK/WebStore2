@@ -1,0 +1,13 @@
+﻿
+@{ 
+    ViewData["Title"] = "Отказано в доступе";
+}
+
+<div class="container">
+    <p class="text-danger">Отказано в доступе</p>
+    <a asp-controller="Home" asp-action="Index">На главную!</a>
+    @if (ViewBag.ReturnUrl != null)
+    {
+        <a href ="/@ViewBag.ReturnUrl">Назад</a>
+    }
+</div>

@@ -1,0 +1,41 @@
+﻿@model WebStore.ViewModels.EmployeeViewModel
+
+@{ Layout = "_LayoutEmployees";
+    ViewData["Title"] = $"Удаление сотрудника id:{Model.Id}";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>Этот парень был из тех, кто просто любил жизнь :(</h3>
+
+    <dl class="dl-horizontal">
+        <dt>id</dt>
+        <dd>@Model.Id</dd>
+
+        <dt>Фамилия</dt>
+        <dd>@Model.LastName</dd>
+
+        <dt>Имя</dt>
+        <dd>@Model.FirstName</dd>
+
+        <dt>Отчество</dt>
+        <dd>@Model.Patronymic</dd>
+
+        <dt>Должность</dt>
+        <dd>@Model.Job</dd>
+
+        <dt>Возраст</dt>
+        <dd>@Model.Age год (лет)</dd>
+
+        <dt>Зарплата</dt>
+        <dd>@Model.Salary рублей</dd>
+
+        <dt>Рабочий стаж</dt>
+        <dd>@Model.WorkExperience год (лет)</dd>
+    </dl>
+
+    <form asp-action="DeleteConfirmed" asp-route-id="@Model.Id">
+        <input type="submit" value="Отправить на улицу" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-default">Понять и простить</a>
+    </form>
+
