@@ -11,27 +11,15 @@ namespace WebStore.Clients.Values
 {
     public class ValuesClient : BaseClient, IValuesService
     {
-        public ValuesClient(IConfiguration Configuration) : base(Configuration, "api/values") { }
+        public ValuesClient(IConfiguration Configuration) : base(Configuration, "api/Values") { }
 
-        public Uri Creat(string value)
-        {
-            var response = Http.PostAsJsonAsync(Address, value).Result;
-
-            return response.EnsureSuccessStatusCode().Headers.Location;
-        }
-
-        public HttpStatusCode Edit(int id, string value)
-        {
-            var response = Http.PutAsJsonAsync($"{Address}/{id}", value).Result;
-
-            return response.EnsureSuccessStatusCode().StatusCode;
-        }
 
         public IEnumerable<string> Get()
         {
             var response = Http.GetAsync(Address).Result;
             if (response.IsSuccessStatusCode)
                 return response.Content.ReadAsAsync<IEnumerable<string>>().Result;
+
             return Enumerable.Empty<string>();
         }
 
@@ -40,13 +28,25 @@ namespace WebStore.Clients.Values
             var response = Http.GetAsync($"{Address}/{id}").Result;
             if (response.IsSuccessStatusCode)
                 return response.Content.ReadAsAsync<string>().Result;
-            return "";
+
+            return string.Empty;
+        }
+
+        public Uri Create(string value)
+        {
+            var response = Http.PostAsJsonAsync(Address, value).Result;
+            return response.EnsureSuccessStatusCode().Headers.Location;
+        }
+
+        public HttpStatusCode Edit(int id, string value)
+        {
+            var response = Http.PutAsJsonAsync($"{Address}/{id}", value).Result;
+            return response.EnsureSuccessStatusCode().StatusCode;
         }
 
         public bool Remove(int id)
         {
             var response = Http.DeleteAsync($"{Address}/{id}").Result;
-
             return response.IsSuccessStatusCode;
         }
     }

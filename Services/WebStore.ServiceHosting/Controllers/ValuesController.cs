@@ -16,10 +16,10 @@ namespace WebStore.ServiceHosting.Controllers
             .Select(i => $"Value--{i:00}")
             .ToList();
 
-        [HttpGet] //http://localhost:5001/api/values
+        [HttpGet] //https://localhost:5001/api/values
         public IEnumerable<string> Get() => __Values;
 
-        [HttpGet("{id}")] //http://localhost:5001/api/values/5
+        [HttpGet("{id}")] //https://localhost:5001/api/values/5
         public ActionResult<string> Get(int id)
         {
             if (id < 0) return BadRequest();
@@ -28,7 +28,7 @@ namespace WebStore.ServiceHosting.Controllers
         }
 
         [HttpPost]         //post -> http://localhost:5001/api/values
-        [HttpPost("add")]  //post -> http://localhost:5001/api/values/add
+        [HttpPost("add")]  //post -> https://localhost:5001/api/values/add
         public ActionResult Post(string value)
         {
             __Values.Add(value);
@@ -37,8 +37,8 @@ namespace WebStore.ServiceHosting.Controllers
             //http://localhost:5001/api/values/10
         }
 
-        [HttpPut("{id}")] //put -> http://localhost:5001/api/values/5
-        [HttpPut("edit/{id}")] //put -> http://localhost:5001/api/values/edit/5
+        [HttpPut("{id}")] //put -> https://localhost:5001/api/values/5
+        [HttpPut("edit/{id}")] //put -> https://localhost:5001/api/values/edit/5
         public ActionResult Put(int id, [FromBody] string value)
         {
             if (id < 0) return BadRequest();
@@ -49,7 +49,7 @@ namespace WebStore.ServiceHosting.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")] //delete -> http://localhost:5001/api/values/5
+        [HttpDelete("{id}")] //delete -> https://localhost:5001/api/values/5
         public ActionResult Delete(int id)
         {
             if (id < 0) return BadRequest();

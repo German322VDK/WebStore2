@@ -13,7 +13,7 @@ namespace WebStore.Interfaces.TestAPI
 
         string Get(int id);
 
-        Uri Creat(string value);
+        Uri Create(string value);
 
         HttpStatusCode Edit(int id, string value);
 

@@ -1,0 +1,24 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using WebStore.Interfaces.TestAPI;
+
+namespace WebStore.Controllers
+{
+    public class WebAPIController : Controller
+    {
+        public IValuesService _ValuesService { get; }
+
+        public WebAPIController(IValuesService ValuesService) => _ValuesService = ValuesService;
+
+        public IActionResult Index()
+        {
+            var values = _ValuesService.Get();
+
+            return View(values);
+        }
+        
+    }
+}
