@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebStore.Models
+namespace WebStore.Domain.Models
 {
     public class Employee
     {
@@ -23,5 +23,5 @@ namespace WebStore.Models
 
         public int WorkExperience { get; set; }
 
-}
+    }
 }

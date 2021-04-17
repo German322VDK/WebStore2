@@ -5,7 +5,7 @@ using System.Linq;
 using WebStore.Data;
 using WebStore.Domain;
 using WebStore.Domain.Entities;
-using WebStore.Infrastructure.Interfaces;
+using WebStore.Interfaces.Services;
 using WebStrore.DAL.Context;
 
 namespace WebStore.Infrastructure.Services.InSQL
