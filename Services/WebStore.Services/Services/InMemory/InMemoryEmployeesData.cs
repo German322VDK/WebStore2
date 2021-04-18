@@ -30,6 +30,19 @@ namespace WebStore.Services.Services.InMemory
             return employee.Id;
         }
 
+        public Employee Add(string LastName, string FirstName, string Patronymic, int Age)
+        {
+            var employee = new Employee
+            {
+                LastName = LastName,
+                FirstName = FirstName,
+                Patronymic = Patronymic,
+                Age = Age
+            };
+            Add(employee);
+            return employee;
+        }
+
         public bool Delete(int id)
         {
             var item = Get(id);
@@ -42,6 +55,9 @@ namespace WebStore.Services.Services.InMemory
         public IEnumerable<Employee> Get() => _Employees;
 
         public Employee Get(int id) => _Employees.FirstOrDefault(employee => employee.Id == id);
+
+        public Employee GetByName(string LastName, string FirstName, string Patronymic) =>
+             _Employees.FirstOrDefault(e => e.LastName == LastName && e.FirstName == FirstName && e.Patronymic == Patronymic);
 
         public void Update(Employee employee)
         {
