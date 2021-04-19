@@ -10,7 +10,7 @@ namespace WebStore.ServiceHosting.Controllers
     [ApiController]
     public class EmployeesApiController : ControllerBase, IEmployeesData
     {
-        public IEmployeesData _EmployeesData { get; }
+        private readonly IEmployeesData _EmployeesData;
 
         public EmployeesApiController(IEmployeesData EmployeesData)
         {
