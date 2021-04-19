@@ -7,6 +7,8 @@ using WebStore.Domain;
 using WebStore.Domain.Entities;
 using WebStore.Interfaces.Services;
 using WebStrore.DAL.Context;
+using WebStore.Domain.DTO;
+using WebStore.Services.Mapping;
 
 namespace WebStore.Services.Services.InSQL
 {
@@ -16,11 +18,11 @@ namespace WebStore.Services.Services.InSQL
 
         public SqlProductData(WebStoreDB db) => _db = db;
 
-        public IEnumerable<Brand> GetBrands() => _db.Brands.Include(b => b.Products);
+        public IEnumerable<BrandDTO> GetBrands() => _db.Brands.Include(b => b.Products).ToDTO();
 
-        public IEnumerable<Section> GetSections() => _db.Sections.Include(s => s.Products);
+        public IEnumerable<SectionDTO> GetSections() => _db.Sections.Include(s => s.Products).ToDTO();
 
-        public IEnumerable<Product> GetProducts(ProductFilter Filter = null)
+        public IEnumerable<ProductDTO> GetProducts(ProductFilter Filter = null)
         {
             IQueryable<Product> query = _db.Products
                 .Include(p => p.Brand)
@@ -39,12 +41,12 @@ namespace WebStore.Services.Services.InSQL
                     query = query.Where(product => product.BrandId == brand_id);
             }
 
-            return query;
+            return query.AsEnumerable().ToDTO();
         }
 
-        public Product GetProductById(int id) => _db.Products
+        public ProductDTO GetProductById(int id) => _db.Products
             .Include(product => product.Brand)
             .Include(product => product.Section)
-            .FirstOrDefault(product => product.Id == id);
+            .FirstOrDefault(product => product.Id == id).ToDTO();
     }
 }
