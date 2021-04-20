@@ -144,4 +144,8 @@
     <ProjectReference Include="..\..\Services\WebStore.Services\WebStore.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Infrastructure\Middleware\" />
+  </ItemGroup>
+
 </Project>

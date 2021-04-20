@@ -8,9 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using WebStore.Clients.Employees;
+using WebStore.Clients.Products;
 using WebStore.Clients.Values;
 using WebStore.Domain.Entities.Identity;
-using WebStore.Infrastructure.Middleware;
+//using WebStore.Infrastructure.Middleware;
 using WebStore.Interfaces.Services;
 using WebStore.Interfaces.TestAPI;
 using WebStore.Services.Data;
@@ -88,10 +89,11 @@ namespace WebStore
             //services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
             services.AddTransient<IEmployeesData, EmployeesClient>();
             services.AddTransient<ICartService, InCookiesCartService>();
-            //services.AddTransient<IProductData, InMemoryProductData>(); IValuesService ValuesClient
-            services.AddTransient<IProductData, SqlProductData>();
+            //services.AddTransient<IProductData, InMemoryProductData>(); ProductsClient IProductData
+            //services.AddTransient<IProductData, SqlProductData>();
             services.AddTransient<IOrderService, SqlOrderService>();
             services.AddScoped<IValuesService, ValuesClient>();
+            services.AddScoped<IProductData, ProductsClient>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
@@ -115,7 +117,7 @@ namespace WebStore
 
             app.UseWelcomePage("/welcome");
 
-            app.UseMiddleware<TestMiddleware>();
+            //app.UseMiddleware<TestMiddleware>();
 
             app.MapWhen(
                 context => context.Request.Query.ContainsKey("id") && context.Request.Query["id"] == "5",
