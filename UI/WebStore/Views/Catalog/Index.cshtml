@@ -1,10 +1,10 @@
-﻿@model CatalogViewModel
+﻿@model WebStore.Domain.ViewModels.CatalogViewModel
 
 @{
     ViewData["Title"] = "Каталог товаров";
 }
 
-<partial name="Partial/_Advertisement"/>
+<partial name="Partial/_Advertisement" />
 
 <section>
     <div class="container">
@@ -13,7 +13,7 @@
                 <partial name="Partial/_Left-sidebar" />
             </div>
 
-            <partial name="Partial/_Features_items" model="Model.Products"/>
+            <partial name="Partial/_Features_items" model="Model.Products" />
         </div>
     </div>
 </section>

@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebStore.Interfaces.Services;
@@ -13,22 +11,19 @@ namespace WebStore.Controllers
     [Authorize]
     public class UserProfileController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
 
         public async Task<IActionResult> Orders([FromServices] IOrderService OrderService)
         {
             var orders = await OrderService.GetUserOrders(User.Identity!.Name);
 
-            return View(orders.Select(order => new UserOrderViewModel 
-            { 
-                Id = order.Id,
-                Name = order.Name,
-                Address = order.Address,
-                Phone = order.Phone,
-                TotalPrice = order.Items.Sum(item => item.FromDTO().TotalItemPrice)
+            return View(orders.Select(o => new UserOrderViewModel
+            {
+                Id = o.Id,
+                Name = o.Name,
+                Phone = o.Phone,
+                Address = o.Address,
+                TotalPrice = o.Items.Sum(item => item.FromDTO().TotalItemPrice)
             }));
         }
     }

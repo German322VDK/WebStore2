@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebStore.Domain.DTO;
@@ -67,7 +65,7 @@ namespace WebStore.Controllers
                 Items = _CartService.GetViewModel().Items.Select(item => new OrderItemDTO
                 {
                     Price = item.Product.Price,
-                    Quantity = item.Quentity,
+                    Quentity = item.Quentity,
                 }).ToList()
             };
 

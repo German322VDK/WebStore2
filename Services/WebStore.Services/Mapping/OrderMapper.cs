@@ -16,7 +16,7 @@ namespace WebStore.Services.Mapping
             {
                 Id = Item.Id,
                 Price = Item.Price,
-                Quantity = Item.Quantity,
+                Quentity = Item.Quentity,
             };
 
         public static OrderItem FromDTO(this OrderItemDTO Item) => Item is null
@@ -25,7 +25,7 @@ namespace WebStore.Services.Mapping
             {
                 Id = Item.Id,
                 Price = Item.Price,
-                Quantity = Item.Quantity,
+                Quentity = Item.Quentity,
             };
 
         public static OrderDTO ToDTO(this Order Order) => Order is null

@@ -1,4 +1,6 @@
-﻿<partial name="Partial/_Slider" />
+﻿@model WebStore.Domain.ViewModels.CatalogViewModel
+
+<partial name="Partial/_Slider" />
 
 <section>
     <div class="container">
@@ -8,7 +10,7 @@
             </div>
 
             <div class="col-sm-9 padding-right">
-                <partial name="Partial/_Features_items" />
+                <partial name="Partial/_Features_items" model="Model.Products"/>
 
                 <partial name="Partial/_Category-tab" />
 

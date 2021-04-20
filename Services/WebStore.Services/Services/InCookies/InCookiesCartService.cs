@@ -65,7 +65,7 @@ namespace WebStore.Services.Services.InCookies
             if (item is null)
                 cart.Items.Add(new CartItem { ProductId = id });
             else
-                item.Quantity++;
+                item.Quentity++;
 
             Cart = cart;
         }
@@ -87,10 +87,10 @@ namespace WebStore.Services.Services.InCookies
             if (item is null)
                 return;
 
-            if (item.Quantity > 0)
-                item.Quantity--;
+            if (item.Quentity > 0)
+                item.Quentity--;
 
-            if (item.Quantity == 0)
+            if (item.Quentity == 0)
                 cart.Items.Remove(item);
 
             Cart = cart;
@@ -109,7 +109,7 @@ namespace WebStore.Services.Services.InCookies
             {
                 Items = Cart.Items
                    .Where(item => product_view_models.ContainsKey(item.ProductId))
-                   .Select(item => (product_view_models[item.ProductId], item.Quantity))
+                   .Select(item => (product_view_models[item.ProductId], item.Quentity))
             };
         }
 

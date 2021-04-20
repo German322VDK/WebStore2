@@ -81,7 +81,7 @@ namespace WebStore.Services.Services.InSQL
                 {
                     Order = order,
                     Price = product.Price,
-                    Quantity = item.Quantity,
+                    Quentity = item.Quentity,
                     Product = product
                 };
                 order.Items.Add(order_item);
