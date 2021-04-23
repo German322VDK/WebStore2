@@ -42,8 +42,6 @@ namespace WebStore
                 default:
                     throw new InvalidOperationException($"Подключение {connection_strng_name} не поддерживается");
             }
-
-           
             services.AddTransient<WebStoreDbInitializer>();
 
             services.AddIdentity<User, Role>()
