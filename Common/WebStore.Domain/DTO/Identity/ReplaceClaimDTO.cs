@@ -2,7 +2,7 @@
 
 namespace WebStore.Domain.DTO.Identity
 {
-    public class ReplaceClaim : UserDTO
+    public class ReplaceClaimDTO : UserDTO
     {
         public Claim Claim { get; set; }
 
