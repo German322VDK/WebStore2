@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,9 +14,7 @@ using WebStore.Clients.Values;
 using WebStore.Domain.Entities.Identity;
 using WebStore.Interfaces.Services;
 using WebStore.Interfaces.TestAPI;
-using WebStore.Services.Data;
 using WebStore.Services.Services.InCookies;
-using WebStrore.DAL.Context;
 
 namespace WebStore
 {
@@ -28,22 +25,8 @@ namespace WebStore
         {
 
             services.AddIdentity<User, Role>()
+                .AddIdentityWebStoreWebAPIClients()
                 .AddDefaultTokenProviders();
-
-            #region Identity stores custom implementations
-
-            services.AddTransient<IUserStore<User>, UsersClient>();
-            services.AddTransient<IUserRoleStore<User>, UsersClient>();
-            services.AddTransient<IUserPasswordStore<User>, UsersClient>();
-            services.AddTransient<IUserEmailStore<User>, UsersClient>();
-            services.AddTransient<IUserPhoneNumberStore<User>, UsersClient>();
-            services.AddTransient<IUserTwoFactorStore<User>, UsersClient>();
-            services.AddTransient<IUserClaimStore<User>, UsersClient>();
-            services.AddTransient<IUserLoginStore<User>, UsersClient>();
-
-            services.AddTransient<IRoleStore<Role>, RolesClient>();
-
-            #endregion
 
             services.Configure<IdentityOptions>(opt =>
             {
