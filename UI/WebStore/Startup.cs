@@ -26,31 +26,8 @@ namespace WebStore
      
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection_strng_name = Configuration["ConnectionString"];
-
-            switch (connection_strng_name)
-            {
-                case "SqlServer":
-                    services.AddDbContext<WebStoreDB>(opt =>
-                    opt.UseSqlServer(Configuration.GetConnectionString(connection_strng_name))
-                    .UseLazyLoadingProxies()
-                    );
-                    break;
-                case "Sqlite":
-                    services.AddDbContext<WebStoreDB>(opt =>
-                    opt.UseSqlite(Configuration.GetConnectionString(connection_strng_name), o => o.MigrationsAssembly("WebStore.DAL.Sqlite"))
-                    .UseLazyLoadingProxies()
-                    );
-                    break;
-                default:
-                    throw new InvalidOperationException($"Подключение {connection_strng_name} не поддерживается");
-            }
-
-           
-            services.AddTransient<WebStoreDbInitializer>();
 
             services.AddIdentity<User, Role>()
-              //  .AddEntityFrameworkStores<WebStoreDB>()
                 .AddDefaultTokenProviders();
 
             #region Identity stores custom implementations
@@ -100,21 +77,16 @@ namespace WebStore
                 opt.SlidingExpiration = true;
             });
 
-            //services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
             services.AddTransient<IEmployeesData, EmployeesClient>();
             services.AddTransient<ICartService, InCookiesCartService>();
-            //services.AddTransient<IProductData, InMemoryProductData>(); ProductsClient IProductData
-            //services.AddTransient<IProductData, SqlProductData>();
-            //services.AddTransient<IOrderService, SqlOrderService>();
             services.AddTransient<IOrderService, OrdersClient>();
             services.AddScoped<IValuesService, ValuesClient>();
             services.AddScoped<IProductData, ProductsClient>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDbInitializer db)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            db.Initialize();
 
             if (env.IsDevelopment())
             {
@@ -132,7 +104,6 @@ namespace WebStore
 
             app.UseWelcomePage("/welcome");
 
-            //app.UseMiddleware<TestMiddleware>();
 
             app.MapWhen(
                 context => context.Request.Query.ContainsKey("id") && context.Request.Query["id"] == "5",
