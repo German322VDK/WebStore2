@@ -15,9 +15,13 @@ namespace WebStore
         
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(host => host
+            //.ConfigureLogging
+            //((host, log) => log
+            //        .AddConsole(opt => opt.IncludeScopes = true)
+            //)
+            .ConfigureWebHostDefaults(host => host
                 .UseStartup<Startup>()
-                )
+            )
             ;
     }
 }

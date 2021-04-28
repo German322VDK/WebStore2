@@ -35,34 +35,37 @@ namespace WebStore.Controllers
         {
             if (!ModelState.IsValid) return View(Model);
 
-            _Logger.LogInformation("Регистрация пользователя {0}", Model.UserName);
+           // _Logger.LogInformation("Регистрация пользователя {0}", Model.UserName);
 
             var user = new User
             {
                 UserName = Model.UserName
             };
 
-            var registration_result = await _UserManager.CreateAsync(user, Model.Password);
-
-            if (registration_result.Succeeded)
+           using(_Logger.BeginScope("Регистрация пользователя {0}", Model.UserName))
             {
-                _Logger.LogInformation("Пользователь {0} успешно зарегестрирован", Model.UserName);
+                var registration_result = await _UserManager.CreateAsync(user, Model.Password);
 
-                await _UserManager.AddToRoleAsync(user, Role.Users);
+                if (registration_result.Succeeded)
+                {
+                    _Logger.LogInformation("Пользователь {0} успешно зарегестрирован", Model.UserName);
 
-                _Logger.LogInformation("Пользователь {0} наделён ролью {1}", Model.UserName, Role.Users);
+                    await _UserManager.AddToRoleAsync(user, Role.Users);
 
-                await _SignInManager.SignInAsync(user, false);
+                    _Logger.LogInformation("Пользователь {0} наделён ролью {1}", Model.UserName, Role.Users);
 
-                return RedirectToAction("Index", "Home");
-            }
+                    await _SignInManager.SignInAsync(user, false);
 
-            _Logger.LogWarning("В процессе регистрации пользователя {0} возникли ошибки :( {1}", 
-                Model.UserName, string.Join(",", registration_result.Errors.Select(e => e.Description)));
+                    return RedirectToAction("Index", "Home");
+                }
 
-            foreach (var errors in registration_result.Errors)
-            {
-                ModelState.AddModelError("", errors.Description);
+                _Logger.LogWarning("В процессе регистрации пользователя {0} возникли ошибки :( {1}",
+                    Model.UserName, string.Join(",", registration_result.Errors.Select(e => e.Description)));
+
+                foreach (var errors in registration_result.Errors)
+                {
+                    ModelState.AddModelError("", errors.Description);
+                }
             }
 
             return View(Model);
