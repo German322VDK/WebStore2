@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using WebStore.Domain.Models;
+using System;
 using WebStore.Domain.ViewModels;
 using WebStore.Interfaces.Services;
 using WebStore.Services.Mapping;
@@ -28,6 +25,8 @@ namespace WebStore.Controllers
         }
 
         public IActionResult Error() => View();
+
+        public IActionResult Throw() => throw new ApplicationException("Test Error!");
 
         public IActionResult Contact_us() => View();
 
