@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebStore
+namespace WebStore.ServiceHosting
 {
     public class Program
     {
@@ -15,8 +15,7 @@ namespace WebStore
         
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(host => host
-                .UseStartup<Startup>()
+                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>()
                 )
             ;
     }
