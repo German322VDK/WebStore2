@@ -6,7 +6,6 @@ using System.Xml;
 
 namespace WebStore.Logger
 {
-
     public class Log4NETLogger : ILogger
     {
         private readonly ILog _Log;
@@ -15,16 +14,17 @@ namespace WebStore.Logger
         {
             var logger_repository = LogManager.CreateRepository(
                 Assembly.GetEntryAssembly(),
-                typeof(log4net.Repository.Hierarchy.Hierarchy)
-                );
+                typeof(log4net.Repository.Hierarchy.Hierarchy));
+
             _Log = LogManager.GetLogger(logger_repository.Name, Category);
+
             log4net.Config.XmlConfigurator.Configure(logger_repository, Configuration);
         }
 
         public IDisposable BeginScope<TState>(TState state) => null;
 
-        public bool IsEnabled(LogLevel LogLevel) => LogLevel switch 
-        { 
+        public bool IsEnabled(LogLevel LogLevel) => LogLevel switch
+        {
             LogLevel.None => false,
             LogLevel.Trace => _Log.IsDebugEnabled,
             LogLevel.Debug => _Log.IsDebugEnabled,
@@ -32,11 +32,14 @@ namespace WebStore.Logger
             LogLevel.Warning => _Log.IsWarnEnabled,
             LogLevel.Error => _Log.IsErrorEnabled,
             LogLevel.Critical => _Log.IsFatalEnabled,
-            _    => throw new ArgumentOutOfRangeException(nameof(LogLevel), LogLevel, null)
+            _ => throw new ArgumentOutOfRangeException(nameof(LogLevel), LogLevel, null)
         };
 
-
-        public void Log<TState>(LogLevel Level, EventId Id, TState State, Exception Error, 
+        public void Log<TState>(
+            LogLevel Level,
+            EventId Id,
+            TState State,
+            Exception Error,
             Func<TState, Exception, string> Formatter)
         {
             if (Formatter is null)
@@ -48,10 +51,14 @@ namespace WebStore.Logger
 
             switch (Level)
             {
+                default: throw new ArgumentOutOfRangeException(nameof(Level), Level, null);
+                case LogLevel.None: break;
+
                 case LogLevel.Trace:
                 case LogLevel.Debug:
                     _Log.Debug(log_message);
                     break;
+
 
                 case LogLevel.Information:
                     _Log.Info(log_message);
@@ -68,13 +75,9 @@ namespace WebStore.Logger
                 case LogLevel.Critical:
                     _Log.Fatal(log_message, Error);
                     break;
-
-                case LogLevel.None:
-                    break;
-
-                default: throw new ArgumentOutOfRangeException(nameof(Level), Level, null);
             }
-
         }
+
     }
 }
+
