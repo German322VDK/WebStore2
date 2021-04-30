@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStore.ServiceHosting", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStore.Clients", "Services\WebStore.Clients\WebStore.Clients.csproj", "{73A742B6-E38D-4186-A373-99B50A3930CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStore_Console_UI", "UI\WebStore_Console_UI\WebStore_Console_UI.csproj", "{5E292D26-B8A9-41EE-AD1C-2CBB46F23710}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStore_Console_UI", "UI\WebStore_Console_UI\WebStore_Console_UI.csproj", "{5E292D26-B8A9-41EE-AD1C-2CBB46F23710}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStore.Logger", "Common\WebStore.Logger\WebStore.Logger.csproj", "{6A30EF9D-D31F-4767-B012-A05F0260DC20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{5E292D26-B8A9-41EE-AD1C-2CBB46F23710}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E292D26-B8A9-41EE-AD1C-2CBB46F23710}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E292D26-B8A9-41EE-AD1C-2CBB46F23710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A30EF9D-D31F-4767-B012-A05F0260DC20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A30EF9D-D31F-4767-B012-A05F0260DC20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A30EF9D-D31F-4767-B012-A05F0260DC20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A30EF9D-D31F-4767-B012-A05F0260DC20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{925D2421-073B-4CE6-9164-01392C71AEB6} = {54CD8DD4-9BB7-48FC-B23D-455CF0219B65}
 		{73A742B6-E38D-4186-A373-99B50A3930CC} = {54CD8DD4-9BB7-48FC-B23D-455CF0219B65}
 		{5E292D26-B8A9-41EE-AD1C-2CBB46F23710} = {643021BF-BDAA-4596-89C7-B955F8943C47}
+		{6A30EF9D-D31F-4767-B012-A05F0260DC20} = {643E8606-6211-469C-9499-125EFF8A1D4E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {879A0950-A26B-48E3-BC6C-8A5A48C877A2}
