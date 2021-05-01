@@ -1,28 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System;
-using WebStore.Domain.ViewModels;
-using WebStore.Interfaces.Services;
-using WebStore.Services.Mapping;
 
 namespace WebStore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IProductData _ProductData;
-
-        public HomeController(IProductData ProductData) => _ProductData = ProductData;
-
-        public IActionResult Index()
-        {
-            var products = _ProductData.GetProducts();
-
-            return View(new CatalogViewModel
-            {
-                Products = products
-                    .OrderBy(p => p.Order).FromDTO().ToView()
-            });
-        }
+        public IActionResult Index() => View();
 
         public IActionResult Error() => View();
 
