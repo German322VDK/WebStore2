@@ -7,7 +7,16 @@ namespace WebStore.Controllers
     {
         public IActionResult Index() => View();
 
+        public IActionResult SecondAction(string id) => 
+            Content($"Action with value id: {id}");
+
         public IActionResult Error() => View();
+
+        public IActionResult ErrorStatus(string code) => code switch
+        {
+            "404" => RedirectToAction(nameof(Error)),
+            _ => Content($"Error code {code}")
+        };
 
         public IActionResult Throw() => throw new ApplicationException("Test Error!");
 
