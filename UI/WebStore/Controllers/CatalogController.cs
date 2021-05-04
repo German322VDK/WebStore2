@@ -31,7 +31,7 @@ namespace WebStore.Controllers
                 SectionId = SectionId,
                 BrandId = BrandId,
                 Products = products
-                    .OrderBy(p => p.Order).ToView()
+                    .OrderBy(p => p.Order).FromDTO().ToView()
             });
         }
 
@@ -39,7 +39,7 @@ namespace WebStore.Controllers
         {
             var product = _ProductData.GetProductById(id);
 
-            return View(product.ToView());
+            return View(product.FromDTO().ToView());
         }
     }
 }

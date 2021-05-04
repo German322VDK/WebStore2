@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebStore.Domain.Entities.Identity;
 using WebStore.Interfaces.Services;
+using WebStore.Services.Mapping;
 
 namespace WebStore.Areas.Admin.Controllers
 {
@@ -16,7 +17,7 @@ namespace WebStore.Areas.Admin.Controllers
 
         public ProductsController(IProductData ProductData) => _ProductData = ProductData;
 
-        public IActionResult Index() => View(_ProductData.GetProducts());
+        public IActionResult Index() => View(_ProductData.GetProducts().FromDTO());
 
         public IActionResult Edit(int id)
         {
@@ -24,7 +25,7 @@ namespace WebStore.Areas.Admin.Controllers
 
             if (product is null) return NotFound();
 
-            return View(product);
+            return View(product.FromDTO());
         }
 
         public IActionResult Delete(int id)
@@ -33,7 +34,7 @@ namespace WebStore.Areas.Admin.Controllers
 
             if (product is null) return NotFound();
 
-            return View(product);
+            return View(product.FromDTO());
         }
     }
 }

@@ -1,13 +1,4 @@
-﻿@using WebStore.Interfaces.Services
-@using WebStore.Services.Mapping
-@inject IProductData ProductData
-@{
-    var products = ProductData
-        .GetProducts()
-        .OrderBy(p => p.Order)
-        .Take(6)
-        .ToView();
-}
+﻿@model WebStore.Domain.ViewModels.CatalogViewModel
 
 <partial name="Partial/_Slider" />
 
@@ -19,7 +10,7 @@
             </div>
 
             <div class="col-sm-9 padding-right">
-                <partial name="Partial/_Features_items"  model="products"/>
+                <partial name="Partial/_Features_items" model="Model.Products"/>
 
                 <partial name="Partial/_Category-tab" />
 

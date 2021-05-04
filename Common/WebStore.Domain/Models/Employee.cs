@@ -23,5 +23,7 @@ namespace WebStore.Domain.Models
 
         public int WorkExperience { get; set; }
 
+        public override string ToString() => $"{Id} {FirstName} {LastName} {Patronymic}";
+
     }
 }

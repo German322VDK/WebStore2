@@ -9,7 +9,7 @@ namespace WebStore.Controllers
 {
     public class WebAPIController : Controller
     {
-        public IValuesService _ValuesService { get; }
+        private readonly IValuesService _ValuesService;
 
         public WebAPIController(IValuesService ValuesService) => _ValuesService = ValuesService;
 
