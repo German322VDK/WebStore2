@@ -10,6 +10,6 @@ namespace WebStore.Domain.Entities
     {
         public ICollection<CartItem> Items { get; set; } = new List<CartItem>();
 
-        public int ItemCount => Items?.Sum(item => item.Quantity) ?? 0;
+        public int ItemCount => Items?.Sum(item => item.Quentity) ?? 0;
     }
 }

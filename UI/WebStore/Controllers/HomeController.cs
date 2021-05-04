@@ -4,13 +4,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebStore.Domain.Models;
+using WebStore.Domain.ViewModels;
+using WebStore.Interfaces.Services;
+using WebStore.Services.Mapping;
 
 namespace WebStore.Controllers
 {
     public class HomeController : Controller
     {
-        
-        public IActionResult Index() => View();
+        private readonly IProductData _ProductData;
+
+        public HomeController(IProductData ProductData) => _ProductData = ProductData;
+
+        public IActionResult Index()
+        {
+            var products = _ProductData.GetProducts();
+
+            return View(new CatalogViewModel
+            {
+                Products = products
+                    .OrderBy(p => p.Order).FromDTO().ToView()
+            });
+        }
 
         public IActionResult Error() => View();
 
