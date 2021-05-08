@@ -12,19 +12,21 @@
             <th>Адрес</th>
             <th>Телефон</th>
             <th>Сумма</th>
+            <th>Дата</th>
         </tr>
     </thead>
     <tbody>
         @{ var i = 1;}
         @foreach (var order in Model)
         {
-            <tr>
-                <td>@(i++)</td>
-                <td>@order.Name</td>
-                <td>@order.Address</td>
-                <td>@order.Phone</td>
-                <td>@order.TotalPrice</td>
-            </tr>
+        <tr>
+            <td>@(i++)</td>
+            <td>@order.Name</td>
+            <td>@order.Address</td>
+            <td>@order.Phone</td>
+            <td>@order.TotalPrice</td>
+            <td>@order.Date</td>
+        </tr>
         }
     </tbody>
 </table>

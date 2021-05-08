@@ -23,7 +23,8 @@ namespace WebStore.Controllers
                 Name = o.Name,
                 Phone = o.Phone,
                 Address = o.Address,
-                TotalPrice = o.Items.Sum(item => item.FromDTO().TotalItemPrice)
+                TotalPrice = o.Items.Sum(item => item.FromDTO().TotalItemPrice),
+                Date = o.Date,
             }));
         }
     }
