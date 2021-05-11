@@ -18,7 +18,7 @@ namespace WebStore.Components
 
             return View(new CatalogViewModel
             {
-                Products = products
+                Products = products.Products
                     .OrderBy(p => p.Order).FromDTO().ToView()
             }.Products);
         }

@@ -6,6 +6,7 @@ using WebStore.Domain.DTO;
 using Assert = Xunit.Assert;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.Domain.ViewModels;
+using Microsoft.Extensions.Configuration;
 
 namespace WebStore.Tests.Controllers
 {
@@ -38,7 +39,10 @@ namespace WebStore.Tests.Controllers
                     Section = new SectionDTO { Id = 1, Name = "Section", Order = 1}
                 });
 
-            var controller = new CatalogController(product_data_mock.Object);
+            var configuration_mock = new Mock<IConfiguration>();
+            configuration_mock.Setup(c => c[It.IsAny<string>()]).Returns("3");
+
+            var controller = new CatalogController(product_data_mock.Object, configuration_mock.Object);
 
             #endregion
 

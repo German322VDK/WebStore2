@@ -18,7 +18,7 @@ namespace WebStore_Console_UI
 
             Console.ReadKey();
 
-            foreach(var item in product_client.GetProducts())
+            foreach(var item in product_client.GetProducts().Products)
             {
                 Console.WriteLine("{0} - {1}", item.Name, item.Price);
             }
