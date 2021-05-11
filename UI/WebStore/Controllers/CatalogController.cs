@@ -39,7 +39,13 @@ namespace WebStore.Controllers
                 SectionId = SectionId,
                 BrandId = BrandId,
                 Products = products.Products
-                    .OrderBy(p => p.Order).FromDTO().ToView()
+                    .OrderBy(p => p.Order).FromDTO().ToView(),
+                PageViewModel = new PageViewModel
+                {
+                    Page = Page,
+                    PageSize = page_size ?? 0,
+                    TotalItems = products.TotalCount
+                }
             });
         }
 
