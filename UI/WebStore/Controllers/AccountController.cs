@@ -26,6 +26,19 @@ namespace WebStore.Controllers
 
         #region Register
 
+        /// <summary>
+        /// параметр ДОЛЖЕН НАЗЫВАТЬСЯ UserName!!! (как вызывающее поле RegisterUserViewModel/UserName)
+        /// </summary>
+        /// <param name="UserName"></param>
+        /// <returns></returns>
+        [AllowAnonymous]
+        public async Task<IActionResult> IsNameFree(string UserName)
+        {
+            var user = await _UserManager.FindByNameAsync(UserName);
+
+            return Json(user is null ? "true" : "Пользователь с таким именем уже существует!");
+        }
+
         [AllowAnonymous]
         public IActionResult Register() => View(new RegisterUserViewModel());
 
@@ -126,5 +139,6 @@ namespace WebStore.Controllers
 
             return View();
         }
+
     }
 }

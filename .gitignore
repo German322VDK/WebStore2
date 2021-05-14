@@ -345,3 +345,14 @@ healthchecksdb
 /UI/WebStore/wwwroot/lib/jquery-loading-overlay/loadingoverlay.min.js
 /UI/WebStore/wwwroot/lib/jquery-loading-overlay/loadingoverlay.js
 /UI/WebStore/wwwroot/lib/jquery-loading-overlay
+/UI/WebStore/wwwroot/lib/jquery-validate/localization/messages_ru.min.js
+/UI/WebStore/wwwroot/lib/jquery-validate/localization/messages_ru.js
+/UI/WebStore/wwwroot/lib/jquery-validate/localization
+/UI/WebStore/wwwroot/lib/jquery-validate/jquery.validate.min.js
+/UI/WebStore/wwwroot/lib/jquery-validate/jquery.validate.js
+/UI/WebStore/wwwroot/lib/jquery-validate/additional-methods.min.js
+/UI/WebStore/wwwroot/lib/jquery-validate/additional-methods.js
+/UI/WebStore/wwwroot/lib/jquery-validate
+/UI/WebStore/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js
+/UI/WebStore/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js
+/UI/WebStore/wwwroot/lib/jquery-validation-unobtrusive
