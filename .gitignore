@@ -356,3 +356,6 @@ healthchecksdb
 /UI/WebStore/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js
 /UI/WebStore/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js
 /UI/WebStore/wwwroot/lib/jquery-validation-unobtrusive
+/UI/WebStore/wwwroot/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js
+/UI/WebStore/wwwroot/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js
+/UI/WebStore/wwwroot/lib/jquery-ajax-unobtrusive
