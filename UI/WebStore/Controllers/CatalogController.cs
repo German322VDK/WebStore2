@@ -12,6 +12,7 @@ namespace WebStore.Controllers
     public class CatalogController : Controller
     {
         private const string __CatalogPageSize = "CatalogPageSize";
+
         private readonly IProductData _ProductData;
         private readonly IConfiguration _Configuration;
 
@@ -23,8 +24,8 @@ namespace WebStore.Controllers
 
         public IActionResult Index(int? BrandId, int? SectionId, int Page = 1, int? PageSize = null)
         {
-            var page_size = PageSize ??
-                (int.TryParse(_Configuration[__CatalogPageSize], out var value) ? value : null);
+            var page_size = PageSize
+                ?? (int.TryParse(_Configuration[__CatalogPageSize], out var value) ? value : null);
 
             var filter = new ProductFilter
             {
@@ -34,19 +35,21 @@ namespace WebStore.Controllers
                 PageSize = page_size
             };
 
-            var products = _ProductData.GetProducts(filter);
+            var (products, total_count) = _ProductData.GetProducts(filter);
 
-            return View(new CatalogViewModel 
-            { 
+            return View(new CatalogViewModel
+            {
                 SectionId = SectionId,
                 BrandId = BrandId,
-                Products = products.Products
-                    .OrderBy(p => p.Order).FromDTO().ToView(),
+                Products = products
+                   .OrderBy(p => p.Order)
+                   .FromDTO()
+                   .ToView(),
                 PageViewModel = new PageViewModel
                 {
                     Page = Page,
                     PageSize = page_size ?? 0,
-                    TotalItems = products.TotalCount
+                    TotalItems = total_count
                 }
             });
         }
@@ -54,6 +57,7 @@ namespace WebStore.Controllers
         public IActionResult Details(int id)
         {
             var product = _ProductData.GetProductById(id);
+            if (product is null) return NotFound();
 
             return View(product.FromDTO().ToView());
         }
@@ -61,7 +65,7 @@ namespace WebStore.Controllers
         #region WebAPI
 
         public IActionResult GetFeaturesItems(int? BrandId, int? SectionId, int Page = 1, int? PageSize = null) =>
-            PartialView("Partial/_FeaturesItems", GetProducts(BrandId, SectionId, Page, PageSize));
+            PartialView("Partial/_Features_items", GetProducts(BrandId, SectionId, Page, PageSize));
 
         private IEnumerable<ProductViewModel> GetProducts(int? BrandId, int? SectionId, int Page, int? PageSize) =>
             _ProductData.GetProducts(new ProductFilter
