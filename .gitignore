@@ -359,3 +359,6 @@ healthchecksdb
 /UI/WebStore/wwwroot/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js
 /UI/WebStore/wwwroot/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js
 /UI/WebStore/wwwroot/lib/jquery-ajax-unobtrusive
+/UI/WebStore/wwwroot/lib/aspnet-signalr/signalr.min.js
+/UI/WebStore/wwwroot/lib/aspnet-signalr/signalr.js
+/UI/WebStore/wwwroot/lib/aspnet-signalr
