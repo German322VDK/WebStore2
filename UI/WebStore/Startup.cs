@@ -2,23 +2,19 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using WebStore.Clients.Employees;
+using WebStore.Clients.Identity;
 using WebStore.Clients.Orders;
 using WebStore.Clients.Products;
 using WebStore.Clients.Values;
 using WebStore.Domain.Entities.Identity;
-//using WebStore.Infrastructure.Middleware;
 using WebStore.Interfaces.Services;
 using WebStore.Interfaces.TestAPI;
-using WebStore.Services.Data;
 using WebStore.Services.Services.InCookies;
-using WebStore.Services.Services.InSQL;
-using WebStrore.DAL.Context;
 
 namespace WebStore
 {
@@ -27,6 +23,8 @@ namespace WebStore
      
         public void ConfigureServices(IServiceCollection services)
         {
+ Lesson-3-WebAPI-Identity
+
             var connection_strng_name = Configuration["ConnectionString"];
 
             switch (connection_strng_name)
@@ -47,9 +45,10 @@ namespace WebStore
                     throw new InvalidOperationException($"Подключение {connection_strng_name} не поддерживается");
             }
             services.AddTransient<WebStoreDbInitializer>();
+ master
 
             services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<WebStoreDB>()
+                .AddIdentityWebStoreWebAPIClients()
                 .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(opt =>
@@ -84,21 +83,16 @@ namespace WebStore
                 opt.SlidingExpiration = true;
             });
 
-            //services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
             services.AddTransient<IEmployeesData, EmployeesClient>();
             services.AddTransient<ICartService, InCookiesCartService>();
-            //services.AddTransient<IProductData, InMemoryProductData>(); ProductsClient IProductData
-            //services.AddTransient<IProductData, SqlProductData>();
-            //services.AddTransient<IOrderService, SqlOrderService>();
             services.AddTransient<IOrderService, OrdersClient>();
             services.AddScoped<IValuesService, ValuesClient>();
             services.AddScoped<IProductData, ProductsClient>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDbInitializer db)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            db.Initialize();
 
             if (env.IsDevelopment())
             {
@@ -116,7 +110,6 @@ namespace WebStore
 
             app.UseWelcomePage("/welcome");
 
-            //app.UseMiddleware<TestMiddleware>();
 
             app.MapWhen(
                 context => context.Request.Query.ContainsKey("id") && context.Request.Query["id"] == "5",
