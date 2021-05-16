@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebStore.Domain.ViewModels
 {
@@ -13,5 +10,7 @@ namespace WebStore.Domain.ViewModels
         public string Phone { get; set; }
         public string Address { get; set; }
         public decimal TotalPrice { get; set; }
+
+        public DateTime Date { get; set; }
     }
 }

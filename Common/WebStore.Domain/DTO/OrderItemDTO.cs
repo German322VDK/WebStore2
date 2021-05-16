@@ -11,6 +11,11 @@
         public int Id { get; set; }
 
         /// <summary>
+        /// ProductId
+        /// </summary>
+        public int ProductId { get; set; }
+
+        /// <summary>
         /// Цена
         /// </summary>
         public decimal Price { get; set; }

@@ -44,7 +44,8 @@ namespace WebStore.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> CheckOut(OrderViewModel OrderModel, [FromServices] IOrderService OrderService)
+        public async Task<IActionResult> CheckOut(OrderViewModel OrderModel, 
+            [FromServices] IOrderService OrderService)
         {
             if (!ModelState.IsValid) 
                 return View(nameof(Index), new CartOrderViewModel
@@ -52,12 +53,6 @@ namespace WebStore.Controllers
                     Cart = _CartService.GetViewModel(),
                     Order = OrderModel,
                 });
-
-            //var order = await OrderService.CreateOrder(
-            //    User.Identity!.Name,
-            //    _CartService.GetViewModel(),
-            //    OrderModel
-            //);
 
             var order_model = new CreateOrderModel
             {
@@ -83,6 +78,36 @@ namespace WebStore.Controllers
 
             return View();
         }
+
+        #region WebAPI
+
+        public IActionResult GetCartView() => ViewComponent("Cart");
+
+        public IActionResult AddAPI(int id)
+        {
+            _CartService.Add(id);
+            return Json(new { id, message = $"Товар с id:{id} был добавлен в корзину" });
+        }
+
+        public IActionResult RemoveAPI(int id)
+        {
+            _CartService.Remove(id);
+            return Ok(new { id, message = $"Товар с id:{id} был удалён из корзины" });
+        }
+
+        public IActionResult DecrementAPI(int id)
+        {
+            _CartService.Decrement(id);
+            return Ok();
+        }
+
+        public IActionResult ClearAPI()
+        {
+            _CartService.Clear();
+            return Ok();
+        }
+
+        #endregion
 
     }
 }
