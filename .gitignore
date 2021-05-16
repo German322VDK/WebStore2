@@ -357,3 +357,4 @@ healthchecksdb
 /Common/WebStore.Domain/WebStore.Domain.xml
 /Common/WebStore.Domain
  master
+/UI/WebStore/wwwroot/lib
