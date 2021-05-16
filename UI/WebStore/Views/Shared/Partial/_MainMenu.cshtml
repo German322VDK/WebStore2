@@ -1,24 +1,32 @@
 ﻿<ul class="nav navbar-nav collapse navbar-collapse">
-    <li><a asp-controller="Home" asp-action="Index" class="active">Главная</a></li>
+    <li><a is-active-route asp-controller="Home" asp-action="Index">Главная</a></li>
     <li class="dropdown">
-        <a href="#">Магазин<i class="fa fa-angle-down"></i></a>
+        <a is-active-route ignore-action asp-controller="Catalog" asp-action="Index">Магазин<i class="fa fa-angle-down"></i></a>
         <ul role="menu" class="sub-menu">
-            <li><a asp-controller="Catalog" asp-action="Index">Каталог</a></li>
-            <li><a asp-controller="Home" asp-action="Product_details">О товаре</a></li>
-            <li><a asp-controller="Home" asp-action="Checkout">Оформить заказ</a></li>
-            <li><a asp-controller="Cart" asp-action="Index">Корзина</a></li>
-            <li><a asp-controller="Home" asp-action="Login">Вход</a></li>
+            <li><a is-active-route ignore-action asp-controller="Catalog" asp-action="Index">Каталог</a></li>
+            <li><a is-active-route asp-controller="Home" asp-action="Product_details">О товаре</a></li>
+            <li><a is-active-route asp-controller="Home" asp-action="Checkout">Оформить заказ</a></li>
+            <li><a is-active-route asp-controller="Cart" asp-action="Index">Корзина</a></li>
+            <li><a is-active-route asp-controller="Home" asp-action="Login">Вход</a></li>
         </ul>
     </li>
     <li class="dropdown">
         <a href="#">Блог<i class="fa fa-angle-down"></i></a>
         <ul role="menu" class="sub-menu">
-            <li><a asp-controller="Home" asp-action="Blog">Список блогов</a></li>
-            <li><a asp-controller="Home" asp-action="Blog_single">Блог магазина</a></li>
+            <li><a is-active-route asp-controller="Home" asp-action="Blog">Список блогов</a></li>
+            <li><a is-active-route asp-controller="Home" asp-action="Blog_single">Блог магазина</a></li>
         </ul>
     </li>
-    <li><a asp-controller="Home" asp-action="Error">404</a></li>
-    <li><a asp-controller="Home" asp-action="Contact_us">Контакты</a></li>
-    <li><a asp-controller="Employees" asp-action="Index">Сотрудники</a></li>
-    <li><a asp-controller="WebAPI" asp-action="Index">WebAPI</a></li>
+    <li><a is-active-route asp-controller="Home" asp-action="Error">404</a></li>
+    <li><a is-active-route asp-controller="Home" asp-action="Contact_us">Контакты</a></li>
+    <li><a is-active-route asp-controller="Employees" asp-action="Index">Сотрудники</a></li>
+    <li><a asp-controller="WebAPI" asp-action="Index" class="@IsActive("WebAPI")">WebAPI</a></li>
 </ul>
+
+@functions
+{
+    string IsActive(string Controller, string Action = "Index") =>
+        Equals(Controller, ViewContext.RouteData.Values["Controller"])
+        && Equals(Action, ViewContext.RouteData.Values["Action"])
+        ? "active" : null;
+}
