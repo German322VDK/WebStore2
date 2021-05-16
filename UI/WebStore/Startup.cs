@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
 using WebStore.Clients.Employees;
 using WebStore.Clients.Identity;
@@ -12,8 +13,10 @@ using WebStore.Clients.Orders;
 using WebStore.Clients.Products;
 using WebStore.Clients.Values;
 using WebStore.Domain.Entities.Identity;
+using WebStore.Infrastructure.Middleware;
 using WebStore.Interfaces.Services;
 using WebStore.Interfaces.TestAPI;
+using WebStore.Logger;
 using WebStore.Services.Services.InCookies;
 
 namespace WebStore
@@ -67,8 +70,9 @@ namespace WebStore
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory log)
         {
+            log.AddLog4Net();
 
             if (env.IsDevelopment())
             {
@@ -86,13 +90,16 @@ namespace WebStore
 
             app.UseWelcomePage("/welcome");
 
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.MapWhen(
                 context => context.Request.Query.ContainsKey("id") && context.Request.Query["id"] == "5",
-                context => context.Run(async request => await request.Response.WriteAsync("Hello with id == 5!"))
+                context => context.Run(async request => 
+                await request.Response.WriteAsync("Hello with id == 5!"))
             );
 
-            app.Map("/hello", context => context.Run(async request => await request.Response.WriteAsync("Hello!!!")));
+            app.Map("/hello", context => context.Run(async request => 
+            await request.Response.WriteAsync("Hello!!!")));
 
             app.UseEndpoints(endpoints =>
             {

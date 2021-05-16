@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WebStore.Domain.DTO;
@@ -17,11 +19,13 @@ namespace WebStore.Services.Services.InSQL
     {
         private readonly UserManager<User> _UserManager;
         private readonly WebStoreDB _db;
+        private readonly ILogger<SqlOrderService> _Logger;
 
-        public SqlOrderService(WebStoreDB db, UserManager<User> UserManager)
+        public SqlOrderService(WebStoreDB db, UserManager<User> UserManager, ILogger<SqlOrderService> Logger)
         {
             _db = db;
             _UserManager = UserManager;
+            _Logger = Logger;
         }
 
         public async Task<OrderDTO> GetOrderById(int id) => (await _db.Orders
@@ -41,7 +45,11 @@ namespace WebStore.Services.Services.InSQL
         {
             var user = await _UserManager.FindByNameAsync(Username);
 
-            if (user is null) throw new InvalidOperationException($"Пользователь {Username} не найден в БД!");
+            if (user is null) 
+                throw new InvalidOperationException($"Пользователь {Username} не найден в БД!");
+
+            _Logger.LogInformation("Оформление нового заказа для {0}", Username);
+            var timer = Stopwatch.StartNew();
 
             await using var transaction = await _db.Database.BeginTransactionAsync().ConfigureAwait(false);
 
@@ -52,24 +60,6 @@ namespace WebStore.Services.Services.InSQL
                 Phone = OrderModel.OrderModel.Phone,
                 User = user,
             };
-
-            //var product_ids = Cart.Items.Select(items => items.Product.Id).ToArray();
-
-            //var cart_products = await _db.Products
-            //    .Where(p => product_ids.Contains(p.Id))
-            //    .ToArrayAsync();
-
-            //order.Items = Cart.Items.Join(
-            //    cart_products,
-            //    cart_item => cart_item.Product.Id,
-            //    product => product.Id,
-            //    (cart_item, product) => new OrderItem
-            //    {
-            //        Order = order,
-            //        Product = product,
-            //        Quantity = cart_item.Quentity,
-            //        Price = product.Price, // можно сделать скидки
-            //    }).ToArray();
 
             foreach(var item in OrderModel.Items)
             {
@@ -91,6 +81,9 @@ namespace WebStore.Services.Services.InSQL
 
             await _db.SaveChangesAsync();
             await transaction.CommitAsync();
+
+            _Logger.LogInformation("Заказ для {0} успешно сформирован за {1} с id {2} на сумму {3}", 
+                Username, timer.Elapsed, order.Id, order.Items.Sum(i => i.TotalItemPrice));
 
             return order.ToDTO();
         }
