@@ -23,6 +23,29 @@ namespace WebStore
      
         public void ConfigureServices(IServiceCollection services)
         {
+ Lesson-3-WebAPI-Identity
+
+            var connection_strng_name = Configuration["ConnectionString"];
+
+            switch (connection_strng_name)
+            {
+                case "SqlServer":
+                    services.AddDbContext<WebStoreDB>(opt =>
+                    opt.UseSqlServer(Configuration.GetConnectionString(connection_strng_name))
+                    .UseLazyLoadingProxies()
+                    );
+                    break;
+                case "Sqlite":
+                    services.AddDbContext<WebStoreDB>(opt =>
+                    opt.UseSqlite(Configuration.GetConnectionString(connection_strng_name), o => o.MigrationsAssembly("WebStore.DAL.Sqlite"))
+                    .UseLazyLoadingProxies()
+                    );
+                    break;
+                default:
+                    throw new InvalidOperationException($"Подключение {connection_strng_name} не поддерживается");
+            }
+            services.AddTransient<WebStoreDbInitializer>();
+ master
 
             services.AddIdentity<User, Role>()
                 .AddIdentityWebStoreWebAPIClients()
