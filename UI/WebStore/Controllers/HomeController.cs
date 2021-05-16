@@ -1,30 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System;
-using WebStore.Domain.ViewModels;
-using WebStore.Interfaces.Services;
-using WebStore.Services.Mapping;
 
 namespace WebStore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IProductData _ProductData;
+        public IActionResult Index() => View();
 
-        public HomeController(IProductData ProductData) => _ProductData = ProductData;
-
-        public IActionResult Index()
-        {
-            var products = _ProductData.GetProducts();
-
-            return View(new CatalogViewModel
-            {
-                Products = products
-                    .OrderBy(p => p.Order).FromDTO().ToView()
-            });
-        }
+        public IActionResult SecondAction(string id) => 
+            Content($"Action with value id: {id}");
 
         public IActionResult Error() => View();
+
+        public IActionResult ErrorStatus(string code) => code switch
+        {
+            "404" => RedirectToAction(nameof(Error)),
+            _ => Content($"Error code {code}")
+        };
 
         public IActionResult Throw() => throw new ApplicationException("Test Error!");
 
