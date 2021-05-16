@@ -338,6 +338,24 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+ Lesson-3-WebAPI-Identity
 /Services/WebStore.ServiceHosting/WebStore.ServiceHosting.xml
 /Common/WebStore.Domain/WebStore.Domain.xml
 /UI/WebStore/Logs
+
+
+/UI/WebStore/Logs/WebStore[2021-05-03T19-38-20].log-20210503.json
+/UI/WebStore/Logs/WebStore[2021-05-01T17-52-10].log-20210501.json
+/UI/WebStore/Logs/WebStore[2021-05-01T12-49-30].log-20210501.json
+/UI/WebStore/Logs/WebStore[2021-05-01T12-47-48].log-20210501.json
+/UI/WebStore/Logs/WebStore[2021-05-01T12-27-37].log-20210501.json
+/UI/WebStore/Logs/WebStore[2021-04-30T18-43-54].log-20210430.json
+/UI/WebStore/Logs/WebStore[2021-04-30T17-47-01].log-20210430.json
+/UI/WebStore/Logs/WebStore[2021-04-30T17-46-05].log-20210430.json
+/UI/WebStore/Logs/WebStore[2021-04-30T17-27-40].log-20210430.json
+/UI/WebStore/Logs
+/Services/WebStore.ServiceHosting/WebStore.ServiceHosting.xml
+/Services/WebStore.ServiceHosting
+/Common/WebStore.Domain/WebStore.Domain.xml
+/Common/WebStore.Domain
+/UI/WebStore/wwwroot/lib
